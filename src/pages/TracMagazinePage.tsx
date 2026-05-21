@@ -4,19 +4,61 @@ import PageTransition from '../components/PageTransition'
 import { useInView } from '../hooks/useInView'
 
 const pillars = [
-  { category: 'Culture & Entertainment', description: 'Celebrating creatives shaping African culture', img: '/images/TRAC/IMG_5576.JPG' },
-  { category: 'Fashion & Beauty', description: 'Style, identity, and self-expression', img: '/images/TRAC/IMG_5577.JPG' },
-  { category: 'Business & Entrepreneurship', description: 'Spotlighting builders and changemakers', img: '/images/TRAC/IMG_5578.JPG' },
-  { category: 'Music & Media', description: 'The sounds and stories defining a generation', img: '/images/TRAC/IMG_5579.JPG' },
-  { category: 'Lifestyle', description: 'How Africa lives, eats, travels, and thrives', img: null },
-  { category: 'Youth Culture', description: 'Bold voices from the next generation', img: null },
+  {
+    index: '01',
+    glyph: 'C',
+    category: 'Culture & Entertainment',
+    description: 'Celebrating creatives shaping African culture',
+    keywords: ['Film', 'Arts', 'Heritage'],
+    wash: 'linear-gradient(135deg, rgba(120, 53, 15, 0.35) 0%, #0a0a0a 55%)',
+  },
+  {
+    index: '02',
+    glyph: 'F',
+    category: 'Fashion & Beauty',
+    description: 'Style, identity, and self-expression',
+    keywords: ['Runway', 'Beauty', 'Identity'],
+    wash: 'linear-gradient(135deg, rgba(136, 19, 55, 0.28) 0%, #0a0a0a 55%)',
+  },
+  {
+    index: '03',
+    glyph: 'B',
+    category: 'Business & Entrepreneurship',
+    description: 'Spotlighting builders and changemakers',
+    keywords: ['Startups', 'Leaders', 'Hustle'],
+    wash: 'linear-gradient(135deg, rgba(6, 78, 59, 0.28) 0%, #0a0a0a 55%)',
+  },
+  {
+    index: '04',
+    glyph: 'M',
+    category: 'Music & Media',
+    description: 'The sounds and stories defining a generation',
+    keywords: ['Sound', 'Media', 'Artists'],
+    wash: 'linear-gradient(135deg, rgba(76, 29, 149, 0.28) 0%, #0a0a0a 55%)',
+  },
+  {
+    index: '05',
+    glyph: 'L',
+    category: 'Lifestyle',
+    description: 'How Africa lives, eats, travels, and thrives',
+    keywords: ['Food', 'Travel', 'Living'],
+    wash: 'linear-gradient(135deg, rgba(12, 74, 110, 0.22) 0%, #0a0a0a 55%)',
+  },
+  {
+    index: '06',
+    glyph: 'Y',
+    category: 'Youth Culture',
+    description: 'Bold voices from the next generation',
+    keywords: ['Gen-Z', 'Voices', 'Future'],
+    wash: 'linear-gradient(135deg, rgba(201, 168, 76, 0.12) 0%, #0a0a0a 55%)',
+  },
 ]
 
 const issues = [
-  { title: 'Issue 01', file: 'TRAC MAG ISSUE 01.pdf' },
-  { title: 'Issue 02', file: 'TRAC MAG ISSUE 02.pdf' },
-  { title: 'Issue 03', file: 'TRAC MAG ISSUE 03.pdf' },
-  { title: 'Issue 04', file: 'TRAC MAG ISSUE 04.pdf' },
+  { title: 'Issue 01', file: 'TRAC MAG ISSUE 01.pdf', cover: 'issue1_cover.JPG' },
+  { title: 'Issue 02', file: 'TRAC MAG ISSUE 02.pdf', cover: 'issue2_cover.JPG' },
+  { title: 'Issue 03', file: 'TRAC MAG ISSUE 03.pdf', cover: 'issue3_cover.JPG' },
+  { title: 'Issue 04', file: 'TRAC MAG ISSUE 04.pdf', cover: 'issue4_cover.JPG' },
 ]
 
 const stats = [
@@ -230,23 +272,55 @@ export default function TracMagazinePage() {
               {pillars.map((pillar) => (
                 <div
                   key={pillar.category}
-                  className="relative aspect-[4/3] overflow-hidden bg-royal-black group"
+                  className="relative min-h-[300px] bg-royal-black p-8 flex flex-col justify-between overflow-hidden group"
                 >
-                  {pillar.img ? (
-                    <img
-                      src={pillar.img}
-                      alt={pillar.category}
-                      className="absolute inset-0 w-full h-full object-cover opacity-60 group-hover:opacity-40 group-hover:scale-105 transition-all duration-700"
-                    />
-                  ) : (
-                    <div className="absolute inset-0 bg-gradient-to-br from-royal-gold/10 to-transparent" />
-                  )}
-                  <div className="absolute inset-0 bg-gradient-to-t from-royal-black via-royal-black/40 to-transparent" />
-                  <div className="absolute bottom-0 left-0 right-0 p-6 z-10">
-                    <h3 className="font-display text-2xl text-royal-cream mb-1 group-hover:text-royal-gold transition-colors duration-300">
+                  <div className="absolute inset-0" style={{ background: pillar.wash }} />
+                  <div
+                    aria-hidden="true"
+                    className="absolute inset-0 opacity-[0.04] group-hover:opacity-[0.07] transition-opacity duration-700"
+                    style={{
+                      backgroundImage:
+                        'repeating-linear-gradient(0deg, transparent, transparent 11px, rgba(201,168,76,1) 11px, rgba(201,168,76,1) 12px)',
+                    }}
+                  />
+                  <span
+                    aria-hidden="true"
+                    className="absolute -right-2 top-4 font-display leading-none select-none pointer-events-none text-royal-gold/[0.07] group-hover:text-royal-gold/[0.14] transition-colors duration-700"
+                    style={{ fontSize: 'clamp(6rem, 18vw, 9rem)' }}
+                  >
+                    {pillar.glyph}
+                  </span>
+                  <div
+                    aria-hidden="true"
+                    className="absolute top-0 left-0 w-10 h-10 border-l border-t border-royal-gold/0 group-hover:border-royal-gold/50 transition-colors duration-500"
+                  />
+                  <div
+                    aria-hidden="true"
+                    className="absolute bottom-0 right-0 w-10 h-10 border-r border-b border-royal-gold/0 group-hover:border-royal-gold/30 transition-colors duration-500"
+                  />
+
+                  <div className="relative z-10 flex items-start justify-between gap-4">
+                    <span className="font-mono text-royal-gold/50 text-[10px] tracking-[0.4em]">
+                      {pillar.index}
+                    </span>
+                    <div className="flex flex-wrap justify-end gap-1.5 max-w-[60%]">
+                      {pillar.keywords.map((keyword) => (
+                        <span
+                          key={keyword}
+                          className="font-mono text-[8px] tracking-[0.2em] uppercase text-royal-cream/20 border border-royal-cream/10 px-2 py-0.5 group-hover:border-royal-gold/30 group-hover:text-royal-cream/40 transition-colors duration-500"
+                        >
+                          {keyword}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+
+                  <div className="relative z-10 mt-16">
+                    <div className="w-8 border-t border-royal-gold mb-5 scale-x-0 group-hover:scale-x-100 origin-left transition-transform duration-500 ease-out" />
+                    <h3 className="font-display text-2xl text-royal-cream mb-2 group-hover:text-royal-gold transition-colors duration-300">
                       {pillar.category}
                     </h3>
-                    <p className="font-body text-royal-cream/40 text-sm leading-relaxed">
+                    <p className="font-body text-royal-cream/40 text-sm leading-relaxed max-w-[90%]">
                       {pillar.description}
                     </p>
                   </div>
@@ -273,19 +347,26 @@ export default function TracMagazinePage() {
             <h2 className="font-display text-5xl md:text-6xl text-royal-black mb-16 leading-none">
               Past Issues
             </h2>
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-px bg-royal-border">
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-8">
               {issues.map((issue) => (
                 <a
                   key={issue.file}
                   href={`/images/TRAC/${issue.file}`}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="bg-royal-cream p-8 hover:bg-white transition-all duration-300 group border-t-2 border-transparent hover:border-royal-gold"
+                  className="group"
                 >
-                  <p className="font-mono text-royal-muted text-[10px] tracking-widest uppercase mb-4">
+                  <div className="aspect-[3/4] overflow-hidden bg-royal-border mb-4 ring-1 ring-royal-border group-hover:ring-royal-gold transition-all duration-300">
+                    <img
+                      src={`/images/TRAC/${issue.cover}`}
+                      alt={`${issue.title} cover`}
+                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+                    />
+                  </div>
+                  <p className="font-mono text-royal-muted text-[10px] tracking-widest uppercase mb-1">
                     TRAC Magazine
                   </p>
-                  <p className="font-display text-3xl text-royal-black mb-6">{issue.title}</p>
+                  <p className="font-display text-2xl md:text-3xl text-royal-black mb-2">{issue.title}</p>
                   <p className="font-mono text-royal-gold/40 text-xs tracking-widest uppercase group-hover:text-royal-gold transition-colors duration-300">
                     Read PDF →
                   </p>

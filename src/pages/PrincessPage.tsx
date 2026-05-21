@@ -4,12 +4,12 @@ import PageTransition from '../components/PageTransition'
 import { useInView } from '../hooks/useInView'
 
 const brands = [
-  'Opera Mini',
-  'Matumi Retail Centre',
-  'Maybelline New York',
-  'MTN MoMo',
-  'Vital',
-  'Auramatic',
+  { name: 'Opera Mini', logo: '/images/princess_m/brand-logos/opera-mini.jpeg' },
+  { name: 'Matumi Retail Centre', logo: '/images/princess_m/brand-logos/matumi.png' },
+  { name: 'Maybelline New York', logo: '/images/princess_m/brand-logos/maybelline.png' },
+  { name: 'MTN MoMo', logo: '/images/princess_m/brand-logos/mtn-momo.png' },
+  { name: 'Vital', logo: '/images/princess_m/brand-logos/vital.png' },
+  { name: 'Auramatic', logo: '/images/princess_m/brand-logos/auramatic.jpeg' },
 ]
 
 const testimonials = [
@@ -292,14 +292,23 @@ export default function PrincessPage() {
               <h2 className="font-display text-5xl md:text-6xl text-royal-cream">Brands She's</h2>
               <h2 className="font-display text-5xl md:text-6xl text-royal-cream/20">Worked With</h2>
             </div>
-            <div className="flex flex-wrap gap-3">
+            <div className="grid grid-cols-2 md:grid-cols-3 gap-px bg-royal-dark-border">
               {brands.map((brand) => (
-                <span
-                  key={brand}
-                  className="border border-royal-dark-border text-royal-cream/40 font-mono text-xs tracking-widest uppercase px-6 py-3 hover:border-royal-gold hover:text-royal-cream transition-all duration-300 cursor-default"
+                <div
+                  key={brand.name}
+                  className="bg-royal-black flex flex-col items-center justify-center gap-5 p-10 md:p-14 min-h-[180px] group"
                 >
-                  {brand}
-                </span>
+                  <div className="flex items-center justify-center w-full h-16 md:h-20 px-4 rounded-sm bg-royal-cream/[0.03] border border-royal-dark-border group-hover:border-royal-gold/30 group-hover:bg-royal-cream/[0.06] transition-all duration-300">
+                    <img
+                      src={brand.logo}
+                      alt={brand.name}
+                      className="max-h-10 md:max-h-12 w-auto max-w-full object-contain opacity-75 group-hover:opacity-100 transition-opacity duration-300"
+                    />
+                  </div>
+                  <p className="font-mono text-royal-cream/30 text-[9px] tracking-[0.25em] uppercase text-center group-hover:text-royal-gold/70 transition-colors duration-300">
+                    {brand.name}
+                  </p>
+                </div>
               ))}
             </div>
           </div>

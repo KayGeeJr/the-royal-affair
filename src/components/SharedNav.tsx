@@ -1,5 +1,5 @@
-'use client'
 import { useState, useEffect } from 'react'
+import { createPortal } from 'react-dom'
 import { NavLink } from 'react-router-dom'
 
 interface SharedNavProps {
@@ -24,6 +24,15 @@ export default function SharedNav({ variant }: SharedNavProps) {
     return () => window.removeEventListener('scroll', onScroll)
   }, [])
 
+  useEffect(() => {
+    if (!menuOpen) return
+    const prev = document.body.style.overflow
+    document.body.style.overflow = 'hidden'
+    return () => {
+      document.body.style.overflow = prev
+    }
+  }, [menuOpen])
+
   const navBg = isDark
     ? scrolled
       ? 'bg-royal-black/95 backdrop-blur-sm border-b border-royal-dark-border'
@@ -36,11 +45,62 @@ export default function SharedNav({ variant }: SharedNavProps) {
   const textActive = isDark ? 'text-royal-gold' : 'text-royal-black'
   const burgerColor = isDark ? 'text-royal-cream' : 'text-royal-black'
 
+  const mobileMenu = menuOpen
+    ? createPortal(
+        <div
+          className={`fixed inset-0 z-[10000] flex flex-col items-center justify-center ${
+            isDark ? 'bg-royal-black' : 'bg-royal-cream'
+          }`}
+          role="dialog"
+          aria-modal="true"
+          aria-label="Navigation menu"
+        >
+          <button
+            type="button"
+            className={`absolute top-5 right-8 ${burgerColor}`}
+            onClick={() => setMenuOpen(false)}
+            aria-label="Close menu"
+          >
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
+              <line x1="18" y1="6" x2="6" y2="18" />
+              <line x1="6" y1="6" x2="18" y2="18" />
+            </svg>
+          </button>
+
+          <div className="w-8 border-t border-royal-gold mb-8" />
+
+          <ul className="flex flex-col items-center gap-6">
+            {links.map((link) => (
+              <li key={link.to}>
+                <NavLink
+                  to={link.to}
+                  end={link.to === '/'}
+                  onClick={() => setMenuOpen(false)}
+                  className={({ isActive }) =>
+                    `font-display text-4xl sm:text-5xl transition-colors duration-200 ${
+                      isActive
+                        ? 'text-royal-gold'
+                        : isDark
+                        ? 'text-royal-cream hover:text-royal-gold'
+                        : 'text-royal-black hover:text-royal-gold'
+                    }`
+                  }
+                >
+                  {link.label}
+                </NavLink>
+              </li>
+            ))}
+          </ul>
+        </div>,
+        document.body
+      )
+    : null
+
   return (
     <>
       <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${navBg}`}>
         <div className="px-8 md:px-20 py-4 flex items-center justify-between">
-          <NavLink to="/" className="flex items-center h-10">
+          <NavLink to="/" className="flex items-center h-10" onClick={() => setMenuOpen(false)}>
             <img
               src={isDark
                 ? '/images/tra_creations/WHITE TRACreations LOGO.png'
@@ -71,9 +131,11 @@ export default function SharedNav({ variant }: SharedNavProps) {
           </ul>
 
           <button
+            type="button"
             className={`md:hidden ${burgerColor}`}
             onClick={() => setMenuOpen(true)}
             aria-label="Open menu"
+            aria-expanded={menuOpen}
           >
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
               <line x1="3" y1="6" x2="21" y2="6" />
@@ -84,38 +146,7 @@ export default function SharedNav({ variant }: SharedNavProps) {
         </div>
       </nav>
 
-      {menuOpen && (
-        <div className={`fixed inset-0 z-[60] ${isDark ? 'bg-royal-black' : 'bg-royal-cream'} flex flex-col items-center justify-center`}>
-          <button
-            className={`absolute top-5 right-8 ${burgerColor}`}
-            onClick={() => setMenuOpen(false)}
-            aria-label="Close menu"
-          >
-            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
-              <line x1="18" y1="6" x2="6" y2="18" />
-              <line x1="6" y1="6" x2="18" y2="18" />
-            </svg>
-          </button>
-
-          <div className="w-8 border-t border-royal-gold mb-8" />
-
-          <ul className="flex flex-col items-center gap-6">
-            {links.map((link) => (
-              <li key={link.to}>
-                <NavLink
-                  to={link.to}
-                  onClick={() => setMenuOpen(false)}
-                  className={`font-display text-5xl hover:text-royal-gold transition-colors duration-200 ${
-                    isDark ? 'text-royal-cream' : 'text-royal-black'
-                  }`}
-                >
-                  {link.label}
-                </NavLink>
-              </li>
-            ))}
-          </ul>
-        </div>
-      )}
+      {mobileMenu}
     </>
   )
 }
