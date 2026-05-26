@@ -13,6 +13,17 @@ const brands = [
   { name: 'Phakama Mpumalanga Festival', logo: '/images/princess_m/brand-logos/Phakama.jpeg' },
 ]
 
+const photoStripFiles = [
+  'DSC_0523.JPG',
+  'DSC_0354.jpg',
+  'DSC_0524.JPG',
+  '1cc6daa0-e496-4c4e-ae58-04192a8e8e6e.JPG',
+  'DSC_7968.jpg',
+  'DSC_7951.jpg',
+  'DSC_7975.jpg',
+  '2269655e-3956-4a26-9adc-a1cf65cd8122.JPG',
+]
+
 const testimonials = [
   {
     num: '01',
@@ -231,18 +242,26 @@ export default function PrincessPage() {
           </div>
         </section>
 
-        {/* Photo strip */}
-        <section className="bg-royal-black border-t border-royal-dark-border overflow-x-auto">
-          <div className="flex gap-px min-w-max">
-            {['DSC_0523.JPG', 'DSC_0354.jpg','DSC_0524.JPG',  '1cc6daa0-e496-4c4e-ae58-04192a8e8e6e.JPG','DSC_7968.jpg','DSC_7951.jpg',  'DSC_7975.jpg', '2269655e-3956-4a26-9adc-a1cf65cd8122.JPG'].map((file) => (
-              <div key={file} className="w-56 h-72 shrink-0 overflow-hidden">
-                <img
-                  src={`/images/princess_m/${file}`}
-                  alt="Princess Mobeng"
-                  className="w-full h-full object-cover object-top hover:scale-105 transition-transform duration-700"
-                />
-              </div>
-            ))}
+        {/* Photo strip — infinite horizontal marquee (all breakpoints) */}
+        <section
+          className="group bg-royal-black border-t border-royal-dark-border"
+          aria-label="Princess Mobeng photo gallery"
+        >
+          <div className="overflow-hidden">
+            <div className="flex w-max gap-px py-px will-change-transform animate-princess-photo-marquee motion-reduce:animate-none group-hover:[animation-play-state:paused]">
+              {[...photoStripFiles, ...photoStripFiles].map((file, i) => (
+                <div
+                  key={`marquee-${i}-${file}`}
+                  className="w-56 h-72 shrink-0 overflow-hidden md:w-64 md:h-80 lg:w-72 lg:h-[22rem]"
+                >
+                  <img
+                    src={`/images/princess_m/${file}`}
+                    alt=""
+                    className="h-full w-full object-cover object-top pointer-events-none"
+                  />
+                </div>
+              ))}
+            </div>
           </div>
         </section>
 

@@ -74,3 +74,28 @@ body::after {
 .animate-fadeIn {
   animation: fadeIn 0.45s ease-out forwards;
 }
+
+@keyframes princess-photo-marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-princess-photo-marquee {
+  animation: princess-photo-marquee 42s linear infinite;
+}
+
+@media (min-width: 768px) {
+  .animate-princess-photo-marquee {
+    animation: princess-photo-marquee 58s linear infinite;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-princess-photo-marquee {
+    animation: none;
+  }
+}
