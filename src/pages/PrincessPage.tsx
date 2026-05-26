@@ -3,14 +3,15 @@ import PageFooter from '../components/PageFooter'
 import PageTransition from '../components/PageTransition'
 import { ContactBrandIcon } from '../components/ContactBrandIcons'
 import { useInView } from '../hooks/useInView'
+import { withBase } from '../utils/withBase'
 
 const brands = [
-  { name: 'Maybelline New York', logo: '/images/princess_m/brand-logos/maybelline.png' },
-  { name: 'MTN MoMo', logo: '/images/princess_m/brand-logos/mtn-momo.png' },
-  { name: 'Vital', logo: '/images/princess_m/brand-logos/vital.png' },
-  { name: 'Auramatic', logo: '/images/princess_m/brand-logos/auramatic.jpeg' },
-  { name: 'The Bra Studio', logo: '/images/princess_m/brand-logos/tbs.jpeg' },
-  { name: 'Phakama Mpumalanga Festival', logo: '/images/princess_m/brand-logos/Phakama.jpeg' },
+  { name: 'Maybelline New York', logo: withBase('/images/princess_m/brand-logos/maybelline.png') },
+  { name: 'MTN MoMo', logo: withBase('/images/princess_m/brand-logos/mtn-momo.png') },
+  { name: 'Vital', logo: withBase('/images/princess_m/brand-logos/vital.png') },
+  { name: 'Auramatic', logo: withBase('/images/princess_m/brand-logos/auramatic.jpeg') },
+  { name: 'The Bra Studio', logo: withBase('/images/princess_m/brand-logos/tbs.jpeg') },
+  { name: 'Phakama Mpumalanga Festival', logo: withBase('/images/princess_m/brand-logos/Phakama.jpeg') },
 ]
 
 const photoStripFiles = [
@@ -123,6 +124,7 @@ export default function PrincessPage() {
   const [testimonialsRef, testimonialsVisible] = useInView()
   const [profileRef, profileVisible] = useInView()
   const [contactRef, contactVisible] = useInView()
+  const [photoStripRef, photoStripActive] = useInView(0.18)
 
   return (
     <PageTransition>
@@ -147,7 +149,7 @@ export default function PrincessPage() {
 
           <div className="relative min-h-[55vh] md:min-h-0 md:h-full overflow-hidden bg-royal-cream">
             <img
-              src="/images/princess_m/DSC_7949.jpg"
+              src={withBase('/images/princess_m/DSC_7949.jpg')}
               alt="Princess Tsepiso Mobeng"
               className="absolute inset-0 w-full h-full object-cover object-top md:object-contain md:object-center"
             />
@@ -244,18 +246,23 @@ export default function PrincessPage() {
 
         {/* Photo strip — infinite horizontal marquee (all breakpoints) */}
         <section
+          ref={photoStripRef}
           className="group bg-royal-black border-t border-royal-dark-border"
           aria-label="Princess Mobeng photo gallery"
         >
           <div className="overflow-hidden">
-            <div className="flex w-max gap-px py-px will-change-transform animate-princess-photo-marquee motion-reduce:animate-none group-hover:[animation-play-state:paused]">
+            <div
+              className={`flex w-max gap-px py-px will-change-transform motion-reduce:animate-none group-hover:[animation-play-state:paused] ${
+                photoStripActive ? 'animate-princess-photo-marquee' : ''
+              }`}
+            >
               {[...photoStripFiles, ...photoStripFiles].map((file, i) => (
                 <div
                   key={`marquee-${i}-${file}`}
                   className="w-56 h-72 shrink-0 overflow-hidden md:w-64 md:h-80 lg:w-72 lg:h-[22rem]"
                 >
                   <img
-                    src={`/images/princess_m/${file}`}
+                    src={withBase(`/images/princess_m/${file}`)}
                     alt=""
                     className="h-full w-full object-cover object-top pointer-events-none"
                   />
@@ -398,7 +405,7 @@ export default function PrincessPage() {
                 </p>
               </div>
               <a
-                href="/images/princess_m/PRINCESS MOBENG PROFILE 2026.pdf"
+                href={withBase('/images/princess_m/PRINCESS MOBENG PROFILE 2026.pdf')}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="shrink-0 bg-royal-gold text-royal-black px-10 py-4 text-xs tracking-widest uppercase font-body font-medium hover:bg-royal-gold-light transition-all duration-300"

@@ -3,6 +3,7 @@ import PageFooter from '../components/PageFooter'
 import PageTransition from '../components/PageTransition'
 import { ContactBrandIcon } from '../components/ContactBrandIcons'
 import { useInView } from '../hooks/useInView'
+import { withBase } from '../utils/withBase'
 
 const services = [
   'Digital Media Production',
@@ -100,7 +101,7 @@ export default function TRACreationsPage() {
 
           <div className="relative min-h-[55vh] md:min-h-0 md:h-full overflow-hidden bg-royal-cream">
             <img
-              src="/images/tra_creations/DSC_9401.JPG"
+              src={withBase('/images/tra_creations/DSC_9401.JPG')}
               alt="TRA Creations"
               className="absolute inset-0 w-full h-full object-cover object-top md:object-contain md:object-center"
             />
@@ -223,7 +224,7 @@ export default function TRACreationsPage() {
               {['DSC_9305.JPG', 'DSC_9480.JPG', 'DSC_9308.JPG'].map((file) => (
                 <div key={file} className="aspect-[4/3] overflow-hidden">
                   <img
-                    src={`/images/tra_creations/${file}`}
+                    src={withBase(`/images/tra_creations/${file}`)}
                     alt="TRA Creations work"
                     className="w-full h-full object-cover hover:scale-105 transition-transform duration-700"
                   />

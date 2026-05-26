@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react'
 import { createPortal } from 'react-dom'
 import { NavLink } from 'react-router-dom'
+import { withBase } from '../utils/withBase'
 
 interface SharedNavProps {
   variant: 'light' | 'dark'
@@ -103,8 +104,8 @@ export default function SharedNav({ variant }: SharedNavProps) {
           <NavLink to="/" className="flex items-center h-10" onClick={() => setMenuOpen(false)}>
             <img
               src={isDark
-                ? '/images/tra_creations/WHITE TRACreations LOGO.png'
-                : '/images/tra_creations/BLACK TRAC LOGO 2.png'}
+                ? withBase('/images/tra_creations/WHITE TRACreations LOGO.png')
+                : withBase('/images/tra_creations/BLACK TRAC LOGO 2.png')}
               alt="The Royal Affair"
               className="h-7 w-auto object-contain"
             />

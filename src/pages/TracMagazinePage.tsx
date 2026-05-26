@@ -3,6 +3,7 @@ import PageFooter from '../components/PageFooter'
 import PageTransition from '../components/PageTransition'
 import { ContactBrandIcon } from '../components/ContactBrandIcons'
 import { useInView } from '../hooks/useInView'
+import { withBase } from '../utils/withBase'
 
 const pillars = [
   {
@@ -139,7 +140,7 @@ export default function TracMagazinePage() {
 
           <div className="flex justify-between items-start z-10">
             <img
-              src="/images/TRAC/TRAC MAG LOGO WHITE .PNG"
+              src={withBase('/images/TRAC/TRAC MAG LOGO WHITE .PNG')}
               alt="TRAC Magazine"
               className="h-8 w-auto object-contain opacity-70"
             />
@@ -168,7 +169,7 @@ export default function TracMagazinePage() {
               </p>
             </div>
             <a
-              href="/images/TRAC/TRAC MAG ISSUE 04.pdf"
+              href={withBase('/images/TRAC/TRAC MAG ISSUE 04.pdf')}
               target="_blank"
               rel="noopener noreferrer"
               className="shrink-0 border border-royal-gold/40 text-royal-gold px-6 py-2 text-xs tracking-widest uppercase font-mono hover:bg-royal-gold hover:text-royal-black transition-all duration-300"
@@ -359,14 +360,14 @@ export default function TracMagazinePage() {
               {issues.map((issue) => (
                 <a
                   key={issue.file}
-                  href={`/images/TRAC/${issue.file}`}
+                  href={withBase(`/images/TRAC/${issue.file}`)}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="group"
                 >
                   <div className="aspect-[3/4] overflow-hidden bg-royal-border mb-4 ring-1 ring-royal-border group-hover:ring-royal-gold transition-all duration-300">
                     <img
-                      src={`/images/TRAC/${issue.cover}`}
+                      src={withBase(`/images/TRAC/${issue.cover}`)}
                       alt={`${issue.title} cover`}
                       className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
                     />

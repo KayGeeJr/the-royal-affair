@@ -14,7 +14,7 @@ function RootLayout() {
   )
 }
 
-const router = createBrowserRouter([
+const routes = [
   {
     element: <RootLayout />,
     children: [
@@ -24,7 +24,10 @@ const router = createBrowserRouter([
       { path: '/princess', element: <PrincessPage /> },
     ],
   },
-])
+]
+
+const basename = import.meta.env.BASE_URL.replace(/\/$/, '')
+const router = createBrowserRouter(routes, basename ? { basename } : undefined)
 
 export default function App() {
   return <RouterProvider router={router} />
