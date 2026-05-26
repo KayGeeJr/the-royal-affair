@@ -1,6 +1,7 @@
 import SharedNav from '../components/SharedNav'
 import PageFooter from '../components/PageFooter'
 import PageTransition from '../components/PageTransition'
+import { ContactBrandIcon } from '../components/ContactBrandIcons'
 import { useInView } from '../hooks/useInView'
 
 const pillars = [
@@ -10,7 +11,7 @@ const pillars = [
     category: 'Culture & Entertainment',
     description: 'Celebrating creatives shaping African culture',
     keywords: ['Film', 'Arts', 'Heritage'],
-    wash: 'linear-gradient(135deg, rgba(120, 53, 15, 0.35) 0%, #0a0a0a 55%)',
+    wash: 'linear-gradient(135deg, rgba(107, 30, 46, 0.4) 0%, #0a0a0a 55%)',
   },
   {
     index: '02',
@@ -18,7 +19,7 @@ const pillars = [
     category: 'Fashion & Beauty',
     description: 'Style, identity, and self-expression',
     keywords: ['Runway', 'Beauty', 'Identity'],
-    wash: 'linear-gradient(135deg, rgba(136, 19, 55, 0.28) 0%, #0a0a0a 55%)',
+    wash: 'linear-gradient(135deg, rgba(201, 168, 76, 0.22) 0%, #0a0a0a 55%)',
   },
   {
     index: '03',
@@ -26,7 +27,7 @@ const pillars = [
     category: 'Business & Entrepreneurship',
     description: 'Spotlighting builders and changemakers',
     keywords: ['Startups', 'Leaders', 'Hustle'],
-    wash: 'linear-gradient(135deg, rgba(6, 78, 59, 0.28) 0%, #0a0a0a 55%)',
+    wash: 'linear-gradient(135deg, rgba(107, 30, 46, 0.32) 0%, #0a0a0a 55%)',
   },
   {
     index: '04',
@@ -34,7 +35,7 @@ const pillars = [
     category: 'Music & Media',
     description: 'The sounds and stories defining a generation',
     keywords: ['Sound', 'Media', 'Artists'],
-    wash: 'linear-gradient(135deg, rgba(76, 29, 149, 0.28) 0%, #0a0a0a 55%)',
+    wash: 'linear-gradient(135deg, rgba(201, 168, 76, 0.18) 0%, #0a0a0a 55%)',
   },
   {
     index: '05',
@@ -42,7 +43,7 @@ const pillars = [
     category: 'Lifestyle',
     description: 'How Africa lives, eats, travels, and thrives',
     keywords: ['Food', 'Travel', 'Living'],
-    wash: 'linear-gradient(135deg, rgba(12, 74, 110, 0.22) 0%, #0a0a0a 55%)',
+    wash: 'linear-gradient(135deg, rgba(107, 30, 46, 0.25) 0%, #0a0a0a 55%)',
   },
   {
     index: '06',
@@ -50,7 +51,7 @@ const pillars = [
     category: 'Youth Culture',
     description: 'Bold voices from the next generation',
     keywords: ['Gen-Z', 'Voices', 'Future'],
-    wash: 'linear-gradient(135deg, rgba(201, 168, 76, 0.12) 0%, #0a0a0a 55%)',
+    wash: 'linear-gradient(135deg, rgba(201, 168, 76, 0.15) 0%, rgba(107, 30, 46, 0.2) 40%, #0a0a0a 70%)',
   },
 ]
 
@@ -120,13 +121,20 @@ export default function TracMagazinePage() {
         <SharedNav variant="dark" />
 
         {/* Hero */}
-        <section className="min-h-[90vh] bg-royal-black relative overflow-hidden flex flex-col justify-between px-8 md:px-20 pt-32 pb-16 border-b border-royal-dark-border">
+        <section className="min-h-[90vh] bg-brand-gradient-dark relative overflow-hidden flex flex-col justify-between px-8 md:px-20 pt-32 pb-16 border-b border-royal-burgundy/20">
           <span
             aria-hidden="true"
             className="absolute top-0 right-0 font-display leading-none select-none pointer-events-none"
-            style={{ fontSize: '40vw', color: 'rgba(201,168,76,0.04)' }}
+            style={{ fontSize: '40vw', color: 'rgba(201,168,76,0.06)' }}
           >
             T
+          </span>
+          <span
+            aria-hidden="true"
+            className="absolute bottom-0 left-0 font-display leading-none select-none pointer-events-none"
+            style={{ fontSize: '28vw', color: 'rgba(107,30,46,0.15)' }}
+          >
+            M
           </span>
 
           <div className="flex justify-between items-start z-10">
@@ -147,7 +155,7 @@ export default function TracMagazinePage() {
             <p className="font-display leading-none text-royal-gold" style={{ fontSize: 'clamp(3rem, 10vw, 10rem)' }}>
               AFRICAN
             </p>
-            <p className="font-display text-royal-cream leading-none" style={{ fontSize: 'clamp(3rem, 10vw, 10rem)' }}>
+            <p className="font-display text-royal-burgundy-light leading-none" style={{ fontSize: 'clamp(3rem, 10vw, 10rem)' }}>
               STORIES.
             </p>
           </div>
@@ -209,9 +217,9 @@ export default function TracMagazinePage() {
             </div>
 
             <div className="border-t border-royal-border pt-10 grid grid-cols-2 md:grid-cols-4 divide-x divide-royal-border">
-              {stats.map((stat) => (
+              {stats.map((stat, i) => (
                 <div key={stat.label} className="text-center py-4 px-4">
-                  <p className="font-display text-4xl md:text-5xl text-royal-black">{stat.value}</p>
+                  <p className={`font-display text-4xl md:text-5xl ${i % 2 === 0 ? 'text-royal-gold' : 'text-royal-burgundy'}`}>{stat.value}</p>
                   <p className="font-mono text-royal-muted text-[10px] tracking-widest uppercase mt-1">
                     {stat.label}
                   </p>
@@ -345,7 +353,7 @@ export default function TracMagazinePage() {
               </p>
             </div>
             <h2 className="font-display text-5xl md:text-6xl text-royal-black mb-16 leading-none">
-              Past Issues
+              Vault Collection
             </h2>
             <div className="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-8">
               {issues.map((issue) => (
@@ -497,11 +505,10 @@ export default function TracMagazinePage() {
 
               <div className="flex flex-col gap-4 min-w-[260px]">
                 {[
-                  { icon: '✉', href: 'mailto:tracmagazinesa@gmail.com', label: 'tracmagazinesa@gmail.com', external: false },
-                  { icon: '💬', href: 'https://wa.me/27769072410', label: 'WhatsApp: 076 907 2410', external: true },
-                  { icon: '📞', href: 'tel:+27630292113', label: '+27 63 029 2113', external: false },
-                  { icon: '📸', href: 'https://instagram.com/trac_magazine', label: '@trac_magazine', external: true },
-                  { icon: '👥', href: 'https://facebook.com/TRACMagazine', label: 'Facebook: TRAC Magazine', external: true },
+                  { brand: 'email' as const, href: 'mailto:tracmagazinesa@gmail.com', label: 'tracmagazinesa@gmail.com', external: false },
+                  { brand: 'whatsapp' as const, href: 'https://wa.me/27769072410', label: 'WhatsApp: 076 907 2410', external: true },
+                  { brand: 'instagram' as const, href: 'https://instagram.com/trac_magazine', label: '@trac_magazine', external: true },
+                  { brand: 'facebook' as const, href: 'https://facebook.com/TRACMagazine', label: 'TRAC Magazine', external: true },
                 ].map((item) => (
                   <a
                     key={item.href}
@@ -509,7 +516,9 @@ export default function TracMagazinePage() {
                     {...(item.external ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
                     className="flex items-center gap-3 font-body text-royal-cream/40 hover:text-royal-gold transition-colors duration-300 text-sm group"
                   >
-                    <span className="text-royal-gold">{item.icon}</span>
+                    <span className="flex h-5 w-5 shrink-0 items-center justify-center text-lg leading-none opacity-90 group-hover:opacity-100">
+                      <ContactBrandIcon brand={item.brand} />
+                    </span>
                     <span className="group-hover:underline underline-offset-4">{item.label}</span>
                   </a>
                 ))}

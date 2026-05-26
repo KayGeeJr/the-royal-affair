@@ -9,10 +9,10 @@ const footerLinks = [
 
 export default function PageFooter() {
   return (
-    <footer className="bg-royal-black border-t border-royal-dark-border py-10 px-8 md:px-20">
+    <footer className="bg-royal-black border-t border-royal-burgundy/30 py-10 px-8 md:px-20">
       <div className="max-w-7xl mx-auto flex justify-between items-center flex-wrap gap-6">
         <div className="flex items-center gap-4">
-          <div className="w-6 border-t border-royal-gold" />
+          <div className="brand-rule-sm" />
           <p className="font-mono text-royal-cream/20 text-xs tracking-widest">
             © {new Date().getFullYear()} The Royal Affair Creations
           </p>

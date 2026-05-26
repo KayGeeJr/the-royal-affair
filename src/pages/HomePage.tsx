@@ -13,8 +13,7 @@ const cards = [
 const stats = [
   { value: '2020', label: 'Established' },
   { value: '3', label: 'Brands & Entities' },
-  { value: '50+', label: 'Clients Served' },
-  { value: '4', label: 'Magazine Issues' },
+  { value: '1', label: 'Purpose to Inspire' },
 ]
 
 const values = [
@@ -53,10 +52,10 @@ export default function HomePage() {
 
         {/* Hero */}
         <section className="min-h-screen bg-royal-cream flex flex-col items-center justify-center text-center px-8 pt-24 pb-16 relative overflow-hidden">
-          <div className="absolute top-24 left-8 w-14 h-14 border-t border-l border-royal-gold/30 hidden md:block" />
-          <div className="absolute top-24 right-8 w-14 h-14 border-t border-r border-royal-gold/30 hidden md:block" />
-          <div className="absolute bottom-8 left-8 w-14 h-14 border-b border-l border-royal-gold/30 hidden md:block" />
-          <div className="absolute bottom-8 right-8 w-14 h-14 border-b border-r border-royal-gold/30 hidden md:block" />
+          <div className="absolute top-24 left-8 w-14 h-14 border-t border-l border-royal-gold/40 hidden md:block" />
+          <div className="absolute top-24 right-8 w-14 h-14 border-t border-r border-royal-burgundy/40 hidden md:block" />
+          <div className="absolute bottom-8 left-8 w-14 h-14 border-b border-l border-royal-burgundy/40 hidden md:block" />
+          <div className="absolute bottom-8 right-8 w-14 h-14 border-b border-r border-royal-gold/40 hidden md:block" />
 
           <div className="z-10">
             <p className="font-mono text-[10px] tracking-[0.45em] text-royal-muted uppercase mb-10">
@@ -67,7 +66,9 @@ export default function HomePage() {
               {['THE', 'ROYAL', 'AFFAIR'].map((word, i) => (
                 <span
                   key={word}
-                  className="block transition-all duration-700 ease-out"
+                  className={`block transition-all duration-700 ease-out ${
+                    i === 1 ? 'text-royal-gold' : i === 2 ? 'text-royal-burgundy' : ''
+                  }`}
                   style={{
                     fontSize: 'clamp(3.5rem, 13vw, 12rem)',
                     opacity: visible ? 1 : 0,
@@ -80,7 +81,7 @@ export default function HomePage() {
               ))}
             </h1>
 
-            <div className="w-16 border-t border-royal-gold mx-auto my-8" />
+            <div className="brand-rule mx-auto my-8" />
 
             <p className="font-body text-royal-muted text-sm tracking-[0.25em] uppercase mb-12">
               Digital Media · Brand Strategy · Creative Excellence
@@ -95,14 +96,14 @@ export default function HomePage() {
               </Link>
               <Link
                 to="/princess"
-                className="border border-royal-black text-royal-black px-8 py-3 text-xs tracking-widest uppercase font-body font-medium hover:bg-royal-black hover:text-royal-cream transition-all duration-300"
+                className="border border-royal-burgundy text-royal-burgundy-dark px-8 py-3 text-xs tracking-widest uppercase font-body font-medium hover:bg-royal-burgundy hover:text-royal-cream transition-all duration-300"
               >
                 Meet Princess M
               </Link>
             </div>
           </div>
 
-          <div className="absolute bottom-10 left-1/2 -translate-x-1/2 text-royal-gold animate-bounce">
+          <div className="absolute bottom-10 left-1/2 -translate-x-1/2 text-royal-burgundy animate-bounce">
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
               <polyline points="6 9 12 15 18 9" />
             </svg>
@@ -110,15 +111,15 @@ export default function HomePage() {
         </section>
 
         {/* Manifesto */}
-        <section className="bg-royal-black py-28 px-8 md:px-20 border-b border-royal-dark-border">
+        <section className="bg-brand-gradient-dark py-28 px-8 md:px-20 border-b border-royal-burgundy/20">
           <div
             ref={manifestoRef}
             className={`max-w-5xl mx-auto text-center transition-all duration-700 ease-out ${
               manifestoVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
             }`}
           >
-            <div className="w-8 border-t border-royal-gold mx-auto mb-8" />
-            <p className="font-mono text-royal-gold/40 text-[10px] tracking-[0.4em] uppercase mb-8">
+            <div className="brand-rule mx-auto mb-8" />
+            <p className="font-mono text-royal-burgundy/80 text-[10px] tracking-[0.4em] uppercase mb-8">
               Our Manifesto
             </p>
             <p
@@ -128,7 +129,7 @@ export default function HomePage() {
               "We are not just a brand — we are a movement. A creative ecosystem built to amplify African
               voices, celebrate culture, and craft stories that define generations."
             </p>
-            <div className="w-8 border-t border-royal-gold/30 mx-auto mt-8" />
+            <div className="brand-rule mx-auto mt-8 opacity-40" />
             <p className="font-mono text-royal-cream/20 text-[10px] tracking-[0.4em] uppercase mt-6">
               Princess Tsepiso Mobeng · Founder, The Royal Affair
             </p>
@@ -143,10 +144,10 @@ export default function HomePage() {
               statsVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
             }`}
           >
-            <div className="grid grid-cols-2 md:grid-cols-4 divide-x divide-royal-border">
-              {stats.map((stat) => (
-                <div key={stat.label} className="text-center py-6 px-4">
-                  <p className="font-display text-5xl md:text-6xl text-royal-black leading-none">{stat.value}</p>
+            <div className="flex flex-wrap justify-center gap-x-8 gap-y-10 sm:gap-x-12 md:gap-x-16 lg:gap-x-20">
+              {stats.map((stat, i) => (
+                <div key={stat.label} className="text-center px-4 sm:px-6 min-w-[7.5rem] sm:min-w-[8rem]">
+                  <p className={`font-display text-5xl md:text-6xl leading-none ${i % 2 === 0 ? 'text-royal-gold' : 'text-royal-burgundy'}`}>{stat.value}</p>
                   <p className="font-mono text-royal-muted text-[10px] tracking-[0.35em] uppercase mt-3">{stat.label}</p>
                 </div>
               ))}
@@ -158,18 +159,20 @@ export default function HomePage() {
         <section className="bg-royal-black py-24 px-8 md:px-20">
           <div className="max-w-7xl mx-auto">
             <div className="flex items-center gap-4 mb-16">
-              <div className="w-8 border-t border-royal-gold" />
-              <p className="font-mono text-royal-gold/50 text-[10px] tracking-[0.4em] uppercase">
+              <div className="brand-rule" />
+              <p className="font-mono text-royal-burgundy/70 text-[10px] tracking-[0.4em] uppercase">
                 Our Ecosystem
               </p>
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-              {cards.map((card) => (
+              {cards.map((card, i) => (
                 <Link
                   key={card.to}
                   to={card.to}
-                  className="bg-royal-cream p-10 group hover:bg-white transition-all duration-300 flex flex-col min-h-[320px] border-t-2 border-transparent hover:border-royal-gold"
+                  className={`bg-royal-cream p-10 group hover:bg-white transition-all duration-300 flex flex-col min-h-[320px] border-t-2 border-transparent ${
+                    i % 2 === 0 ? 'hover:border-royal-gold' : 'hover:border-royal-burgundy'
+                  }`}
                 >
                   <span className="font-mono text-royal-muted text-xs tracking-widest mb-6 block">
                     {card.num}
@@ -180,7 +183,9 @@ export default function HomePage() {
                   <span className="font-body text-royal-muted text-sm leading-relaxed mb-auto block">
                     {card.sub}
                   </span>
-                  <span className="font-mono text-royal-gold text-xs tracking-widest uppercase mt-8 block group-hover:underline underline-offset-4">
+                  <span className={`font-mono text-xs tracking-widest uppercase mt-8 block group-hover:underline underline-offset-4 ${
+                    i % 2 === 0 ? 'text-royal-gold' : 'text-royal-burgundy'
+                  }`}>
                     Explore →
                   </span>
                 </Link>
@@ -198,8 +203,8 @@ export default function HomePage() {
             }`}
           >
             <div className="flex items-center gap-4 mb-4">
-              <div className="w-8 border-t border-royal-gold" />
-              <p className="font-mono text-royal-gold text-[10px] tracking-[0.4em] uppercase">
+              <div className="brand-rule" />
+              <p className="font-mono text-royal-burgundy text-[10px] tracking-[0.4em] uppercase">
                 What Drives Us
               </p>
             </div>
@@ -211,7 +216,7 @@ export default function HomePage() {
                 <div key={v.num}>
                   <span className="font-mono text-royal-muted/30 text-xs tracking-widest block mb-4">{v.num}</span>
                   <h3 className="font-display text-3xl text-royal-black mb-4">{v.title}</h3>
-                  <div className="w-6 border-t border-royal-gold mb-4" />
+                  <div className="brand-rule-sm mb-4" />
                   <p className="font-body text-royal-muted text-base leading-relaxed">{v.body}</p>
                 </div>
               ))}
@@ -220,7 +225,7 @@ export default function HomePage() {
         </section>
 
         {/* CTA Band */}
-        <section className="bg-royal-gold py-16 px-8 md:px-20">
+        <section className="bg-brand-gradient py-16 px-8 md:px-20">
           <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-8">
             <div>
               <p className="font-mono text-royal-black/40 text-[10px] tracking-[0.4em] uppercase mb-2">Ready to Begin?</p>
@@ -245,7 +250,7 @@ export default function HomePage() {
           </div>
         </section>
 
-        <footer className="bg-royal-black border-t border-royal-dark-border py-6 text-center">
+        <footer className="bg-royal-black border-t border-royal-burgundy/30 py-6 text-center">
           <p className="font-mono text-royal-cream/20 text-xs tracking-widest">
             © {new Date().getFullYear()} The Royal Affair Creations · South Africa
           </p>

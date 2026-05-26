@@ -1,6 +1,7 @@
 import SharedNav from '../components/SharedNav'
 import PageFooter from '../components/PageFooter'
 import PageTransition from '../components/PageTransition'
+import { ContactBrandIcon } from '../components/ContactBrandIcons'
 import { useInView } from '../hooks/useInView'
 
 const services = [
@@ -55,6 +56,7 @@ const industries = [
   'Fashion & Beauty',
   'Events & Entertainment',
   'Music & Media',
+  'Construction & Real Estate',
   'Corporate & Finance',
   'Food & Lifestyle',
   'Health & Wellness',
@@ -77,8 +79,8 @@ export default function TRACreationsPage() {
         <SharedNav variant="light" />
 
         {/* Hero — split layout */}
-        <section className="min-h-[85vh] grid grid-cols-1 md:grid-cols-2 border-b border-royal-border">
-          <div className="flex flex-col justify-end px-8 md:px-16 pb-16 pt-32 bg-royal-cream">
+        <section className="min-h-[85vh] grid grid-cols-1 md:grid-cols-2 border-b border-royal-border bg-royal-cream">
+          <div className="flex flex-col justify-end px-8 md:px-16 pb-16 pt-32">
             <p className="font-mono text-[10px] tracking-[0.3em] text-royal-muted uppercase mb-16">
               DIGITAL MEDIA AGENCY · TRA CREATIONS
             </p>
@@ -86,23 +88,23 @@ export default function TRACreationsPage() {
               <span className="block" style={{ fontSize: 'clamp(2.5rem, 5.5vw, 6rem)' }}>
                 A Creative Agency
               </span>
-              <span className="block italic text-royal-gold" style={{ fontSize: 'clamp(2.5rem, 5.5vw, 6rem)' }}>
+              <span className="block italic text-royal-burgundy" style={{ fontSize: 'clamp(2.5rem, 5.5vw, 6rem)' }}>
                 Built on Purpose.
               </span>
             </h1>
-            <div className="w-12 border-t border-royal-gold mt-8 mb-4" />
+            <div className="brand-rule mt-8 mb-4" />
             <p className="font-body text-royal-muted text-sm tracking-widest uppercase">
               Communications · Media · Strategy
             </p>
           </div>
 
-          <div className="relative min-h-[50vh] md:min-h-0 overflow-hidden">
+          <div className="relative min-h-[55vh] md:min-h-0 md:h-full overflow-hidden bg-royal-cream">
             <img
               src="/images/tra_creations/DSC_9401.JPG"
               alt="TRA Creations"
-              className="absolute inset-0 w-full h-full object-cover"
+              className="absolute inset-0 w-full h-full object-cover object-top md:object-contain md:object-center"
             />
-            <div className="absolute inset-0 bg-royal-black/10" />
+            <div className="absolute inset-0 bg-royal-black/10 pointer-events-none md:bg-transparent" aria-hidden="true" />
           </div>
         </section>
 
@@ -116,7 +118,7 @@ export default function TRACreationsPage() {
           >
             <div className="grid grid-cols-1 md:grid-cols-[220px_1fr] gap-16">
               <div className="md:sticky md:top-28 h-fit">
-                <div className="w-8 border-t border-royal-gold mb-4" />
+                <div className="brand-rule mb-4" />
                 <p className="font-mono text-royal-gold text-xs tracking-widest uppercase">
                   01 / About
                 </p>
@@ -140,7 +142,7 @@ export default function TRACreationsPage() {
                   engagement, trust, and growth.
                 </p>
 
-                <blockquote className="border-l-2 border-royal-gold pl-6 my-10">
+                <blockquote className="border-l-2 border-royal-burgundy pl-6 my-10">
                   <p className="font-display text-2xl text-royal-black italic leading-snug">
                     "We don't just create content — we build brands, shape narratives, and create
                     experiences that leave lasting impressions."
@@ -160,8 +162,8 @@ export default function TRACreationsPage() {
             }`}
           >
             <div className="flex items-center gap-4 mb-4">
-              <div className="w-8 border-t border-royal-gold" />
-              <p className="font-mono text-royal-gold/50 text-[10px] tracking-[0.4em] uppercase">
+              <div className="brand-rule" />
+              <p className="font-mono text-royal-burgundy/70 text-[10px] tracking-[0.4em] uppercase">
                 02 / Our Approach
               </p>
             </div>
@@ -171,7 +173,7 @@ export default function TRACreationsPage() {
             <div className="grid grid-cols-1 md:grid-cols-3 gap-px bg-royal-dark-border">
               {pillars.map((p) => (
                 <div key={p.title} className="bg-royal-black p-10 hover:bg-royal-black/70 transition-colors duration-300">
-                  <div className="w-6 border-t border-royal-gold mb-6" />
+                  <div className="brand-rule-sm mb-6" />
                   <h3 className="font-display text-2xl text-royal-cream mb-4">{p.title}</h3>
                   <p className="font-body text-royal-cream/40 text-base leading-relaxed">{p.body}</p>
                 </div>
@@ -189,7 +191,7 @@ export default function TRACreationsPage() {
             }`}
           >
             <div className="flex items-center gap-4 mb-4">
-              <div className="w-8 border-t border-royal-gold" />
+              <div className="brand-rule" />
               <p className="font-mono text-royal-gold text-[10px] tracking-[0.4em] uppercase">
                 03 / Process
               </p>
@@ -202,7 +204,7 @@ export default function TRACreationsPage() {
                 <div key={p.step} className="bg-royal-cream p-10 hover:bg-white transition-colors duration-300">
                   <span className="font-mono text-royal-muted/30 text-xs tracking-widest block mb-6">{p.step}</span>
                   <h3 className="font-display text-2xl text-royal-black mb-3">{p.title}</h3>
-                  <div className="w-5 border-t border-royal-gold mb-4" />
+                  <div className="brand-rule-sm mb-4" />
                   <p className="font-body text-royal-muted text-sm leading-relaxed">{p.body}</p>
                 </div>
               ))}
@@ -240,8 +242,8 @@ export default function TRACreationsPage() {
             }`}
           >
             <div className="flex items-center gap-4 mb-4">
-              <div className="w-8 border-t border-royal-gold" />
-              <p className="font-mono text-royal-gold/50 text-[10px] tracking-[0.4em] uppercase">
+              <div className="brand-rule" />
+              <p className="font-mono text-royal-burgundy/70 text-[10px] tracking-[0.4em] uppercase">
                 04 / Services
               </p>
             </div>
@@ -252,17 +254,17 @@ export default function TRACreationsPage() {
               {services.map((service, i) => (
                 <div
                   key={service}
-                  className="border-b border-royal-dark-border py-5 flex items-center justify-between group hover:border-royal-gold/30 transition-all duration-300 px-2"
+                  className="border-b border-royal-dark-border py-5 flex items-center justify-between group hover:border-royal-burgundy/30 transition-all duration-300 px-2"
                 >
                   <div className="flex items-center gap-8">
                     <span className="font-mono text-royal-gold/40 text-xs w-8 shrink-0">
                       {String(i + 1).padStart(2, '0')}
                     </span>
-                    <span className="font-display text-xl md:text-2xl text-royal-cream group-hover:text-royal-gold-light transition-colors duration-300">
+                    <span className="font-display text-xl md:text-2xl text-royal-cream group-hover:text-royal-burgundy-light transition-colors duration-300">
                       {service}
                     </span>
                   </div>
-                  <span className="text-royal-gold/30 group-hover:text-royal-gold group-hover:translate-x-2 transition-all duration-300 text-lg shrink-0 ml-4">
+                  <span className="text-royal-gold/30 group-hover:text-royal-burgundy group-hover:translate-x-2 transition-all duration-300 text-lg shrink-0 ml-4">
                     →
                   </span>
                 </div>
@@ -280,7 +282,7 @@ export default function TRACreationsPage() {
             }`}
           >
             <div className="flex items-center gap-4 mb-4">
-              <div className="w-8 border-t border-royal-gold" />
+              <div className="brand-rule" />
               <p className="font-mono text-royal-gold text-[10px] tracking-[0.4em] uppercase">
                 05 / Industries
               </p>
@@ -299,7 +301,7 @@ export default function TRACreationsPage() {
                 {industries.map((industry) => (
                   <span
                     key={industry}
-                    className="border border-royal-border text-royal-muted font-mono text-xs tracking-widest uppercase px-6 py-3 hover:border-royal-gold hover:text-royal-black transition-all duration-300 cursor-default"
+                    className="border border-royal-border text-royal-muted font-mono text-xs tracking-widest uppercase px-6 py-3 hover:border-royal-burgundy hover:text-royal-black transition-all duration-300 cursor-default"
                   >
                     {industry}
                   </span>
@@ -310,7 +312,7 @@ export default function TRACreationsPage() {
         </section>
 
         {/* Start a Project CTA */}
-        <section className="bg-royal-gold py-20 px-8 md:px-20">
+        <section className="bg-brand-gradient py-20 px-8 md:px-20">
           <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-8">
             <div>
               <p className="font-mono text-royal-black/40 text-[10px] tracking-[0.4em] uppercase mb-2">Ready to Elevate Your Brand?</p>
@@ -337,7 +339,7 @@ export default function TRACreationsPage() {
           >
             <div className="flex items-start justify-between flex-wrap gap-12">
               <div>
-                <div className="w-8 border-t border-royal-gold mb-4" />
+                <div className="brand-rule mb-4" />
                 <h2 className="font-display text-4xl text-royal-black">Get in Touch</h2>
                 <p className="font-body text-royal-muted text-sm mt-2">
                   Ready to grow your brand?
@@ -346,18 +348,20 @@ export default function TRACreationsPage() {
 
               <div className="flex flex-col gap-4 min-w-[260px]">
                 {[
-                  { icon: '✉', href: 'mailto:traccreationss@gmail.com', label: 'traccreationss@gmail.com', external: false },
-                  { icon: '💬', href: 'https://wa.me/27769072410', label: 'WhatsApp: 076 907 2410', external: true },
-                  { icon: '📞', href: 'tel:+27630292113', label: '+27 63 029 2113', external: false },
-                  { icon: '📸', href: 'https://instagram.com/tra_creationss', label: '@tra_creationss', external: true },
+                  { brand: 'email' as const, href: 'mailto:traccreationss@gmail.com', label: 'traccreationss@gmail.com', external: false },
+                  { brand: 'whatsapp' as const, href: 'https://wa.me/27769072410', label: 'WhatsApp/ Call: 076 907 2410', external: true },
+                  { brand: 'instagram' as const, href: 'https://instagram.com/tra_creationss', label: '@tra_creationss', external: true },
+                  { brand: 'facebook' as const, href: 'https://www.facebook.com/profile.php?id=61563269788400', label: 'TRA Creations', external: true },
                 ].map((item) => (
                   <a
                     key={item.href}
                     href={item.href}
                     {...(item.external ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
-                    className="flex items-center gap-3 font-body text-royal-muted hover:text-royal-gold transition-colors duration-300 text-sm group"
+                    className="flex items-center gap-3 font-body text-royal-muted hover:text-royal-burgundy transition-colors duration-300 text-sm group"
                   >
-                    <span className="text-royal-gold">{item.icon}</span>
+                    <span className="flex shrink-0 items-center justify-center opacity-90 group-hover:opacity-100">
+                      <ContactBrandIcon brand={item.brand} />
+                    </span>
                     <span className="group-hover:underline underline-offset-4">{item.label}</span>
                   </a>
                 ))}

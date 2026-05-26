@@ -35,14 +35,14 @@ export default function SharedNav({ variant }: SharedNavProps) {
 
   const navBg = isDark
     ? scrolled
-      ? 'bg-royal-black/95 backdrop-blur-sm border-b border-royal-dark-border'
-      : 'bg-royal-black border-b border-royal-dark-border'
+      ? 'bg-royal-black/95 backdrop-blur-sm border-b border-royal-burgundy/30'
+      : 'bg-royal-black border-b border-royal-burgundy/20'
     : scrolled
-    ? 'bg-royal-cream/95 backdrop-blur-sm border-b border-royal-border'
-    : 'bg-royal-cream border-b border-royal-border'
+    ? 'bg-royal-cream/95 backdrop-blur-sm border-b border-royal-gold/30'
+    : 'bg-royal-cream border-b border-royal-gold/20'
 
   const textBase = isDark ? 'text-royal-cream/50' : 'text-royal-muted'
-  const textActive = isDark ? 'text-royal-gold' : 'text-royal-black'
+  const textActive = isDark ? 'text-royal-gold' : 'text-royal-burgundy'
   const burgerColor = isDark ? 'text-royal-cream' : 'text-royal-black'
 
   const mobileMenu = menuOpen
@@ -82,7 +82,7 @@ export default function SharedNav({ variant }: SharedNavProps) {
                         ? 'text-royal-gold'
                         : isDark
                         ? 'text-royal-cream hover:text-royal-gold'
-                        : 'text-royal-black hover:text-royal-gold'
+                        : 'text-royal-black hover:text-royal-burgundy'
                     }`
                   }
                 >
@@ -120,7 +120,7 @@ export default function SharedNav({ variant }: SharedNavProps) {
                     `font-body text-[10px] tracking-[0.3em] uppercase transition-all duration-200 ${
                       isActive
                         ? `${textActive} underline underline-offset-4 decoration-royal-gold decoration-1`
-                        : `${textBase} hover:text-royal-gold`
+                        : `${textBase} hover:text-royal-burgundy`
                     }`
                   }
                 >

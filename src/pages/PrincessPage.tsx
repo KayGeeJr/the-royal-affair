@@ -1,15 +1,16 @@
 import SharedNav from '../components/SharedNav'
 import PageFooter from '../components/PageFooter'
 import PageTransition from '../components/PageTransition'
+import { ContactBrandIcon } from '../components/ContactBrandIcons'
 import { useInView } from '../hooks/useInView'
 
 const brands = [
-  { name: 'Opera Mini', logo: '/images/princess_m/brand-logos/opera-mini.jpeg' },
-  { name: 'Matumi Retail Centre', logo: '/images/princess_m/brand-logos/matumi.png' },
   { name: 'Maybelline New York', logo: '/images/princess_m/brand-logos/maybelline.png' },
   { name: 'MTN MoMo', logo: '/images/princess_m/brand-logos/mtn-momo.png' },
   { name: 'Vital', logo: '/images/princess_m/brand-logos/vital.png' },
   { name: 'Auramatic', logo: '/images/princess_m/brand-logos/auramatic.jpeg' },
+  { name: 'The Bra Studio', logo: '/images/princess_m/brand-logos/tbs.jpeg' },
+  { name: 'Phakama Mpumalanga Festival', logo: '/images/princess_m/brand-logos/Phakama.jpeg' },
 ]
 
 const testimonials = [
@@ -34,11 +35,10 @@ const testimonials = [
 ]
 
 const contactLinks = [
-  { icon: '✉', label: 'Email', value: 'princessmobeng@icloud.co.za', href: 'mailto:princessmobeng@icloud.co.za', external: false },
-  { icon: '📞', label: 'Phone', value: '+27 63 029 2113', href: 'tel:+27630292113', external: false },
-  { icon: '📸', label: 'Instagram', value: '@princess_mobeng', href: 'https://instagram.com/princess_mobeng', external: true },
-  { icon: '🎵', label: 'TikTok', value: '@princess_mobeng', href: 'https://tiktok.com/@princess_mobeng', external: true },
-  { icon: '👤', label: 'Facebook', value: 'Princess_M', href: 'https://facebook.com/Princess_M', external: true },
+  { brand: 'email' as const, label: 'Email', value: 'princessmobeng@icloud.co.za', href: 'mailto:princessmobeng@icloud.co.za', external: false },
+  { brand: 'instagram' as const, label: 'Instagram', value: '@princess_mobeng', href: 'https://instagram.com/princess_mobeng', external: true },
+  { emoji: '🎵', label: 'TikTok', value: '@princess_mobeng', href: 'https://tiktok.com/@princess_mobeng', external: true },
+  { brand: 'facebook' as const, label: 'Facebook', value: 'Princess_M', href: 'https://www.facebook.com/PrincessMobeng', external: true },
 ]
 
 const services = [
@@ -66,35 +66,42 @@ const services = [
 
 const events = [
   {
+    year: '2023 - Present',
+    title: 'RISEfm',
+    detail: 'Creative Content Producer - Presenter',
+  },
+  {
+    year: '2026',
+    title: 'Opera Mini',
+    detail: 'Street Series Presenter',
+  },
+  {
+    year: '2026',
+    title: 'Old Mutual',
+    detail: 'MC & Programme Director',
+  },
+  {
+    year: '2026',
+    title: 'Matumi Retail Centre Campaigns',
+    detail: 'Content Creation',
+  },
+
+  {
+    year: '2026',
+    title: 'Mpumalanga International Film Festival',
+    detail: 'MC - Film Premiere',
+  },
+  // {
+  //   year: '2025',
+  //   title: 'MTN MoMo Campaign',
+  //   detail: 'Brand Collaboration & Digital Content',
+  // },
+  {
     year: '2024',
     title: 'Engen Sportscaster Search',
     detail: 'Winner — First Official National Edition',
   },
-  {
-    year: '2024',
-    title: 'Auramatic Scents & Serenity',
-    detail: 'Event MC & Content Creator',
-  },
-  {
-    year: '2023',
-    title: 'Matumi Retail Centre Campaigns',
-    detail: 'Brand Ambassador & Content Creation',
-  },
-  {
-    year: '2023',
-    title: 'Isabel Lukhanyo Events',
-    detail: 'Social Media & Event Coverage',
-  },
-  {
-    year: '2022',
-    title: 'MTN MoMo Campaign',
-    detail: 'Brand Collaboration & Digital Content',
-  },
-  {
-    year: '2020',
-    title: 'Industry Entry',
-    detail: 'Launched TRA Creations & began media career',
-  },
+ 
 ]
 
 export default function PrincessPage() {
@@ -112,8 +119,8 @@ export default function PrincessPage() {
         <SharedNav variant="light" />
 
         {/* Hero — split layout */}
-        <section className="min-h-[90vh] grid grid-cols-1 md:grid-cols-2 border-b border-royal-border">
-          <div className="flex flex-col justify-end px-8 md:px-16 pb-16 pt-32 bg-royal-cream">
+        <section className="min-h-[90vh] grid grid-cols-1 md:grid-cols-2 border-b border-royal-border bg-royal-cream">
+          <div className="flex flex-col justify-end px-8 md:px-16 pb-16 pt-32">
             <p className="font-mono text-[10px] tracking-[0.3em] text-royal-muted uppercase mb-16">
               MEDIA PERSONALITY · PUBLIC RELATIONS · ENTREPRENEUR
             </p>
@@ -127,13 +134,13 @@ export default function PrincessPage() {
             </p>
           </div>
 
-          <div className="relative min-h-[55vh] md:min-h-0 overflow-hidden">
+          <div className="relative min-h-[55vh] md:min-h-0 md:h-full overflow-hidden bg-royal-cream">
             <img
-              src="/images/princess_m/Princess_M .jpg"
+              src="/images/princess_m/DSC_7949.jpg"
               alt="Princess Tsepiso Mobeng"
-              className="absolute inset-0 w-full h-full object-cover object-top"
+              className="absolute inset-0 w-full h-full object-cover object-top md:object-contain md:object-center"
             />
-            <div className="absolute inset-0 bg-royal-black/10" />
+            <div className="absolute inset-0 bg-royal-black/10 pointer-events-none md:bg-transparent" aria-hidden="true" />
           </div>
         </section>
 
@@ -175,10 +182,10 @@ export default function PrincessPage() {
                   </p>
                 </div>
 
-                <div className="mt-12 border border-royal-gold/30 p-8 bg-royal-gold/5">
+                <div className="mt-12 border border-royal-burgundy/40 p-8 bg-royal-burgundy/10">
                   <div className="flex items-center gap-4 mb-4">
                     <div className="w-6 border-t border-royal-gold" />
-                    <p className="font-mono text-royal-gold text-[10px] tracking-widest uppercase">
+                    <p className="font-mono text-royal-burgundy-light text-[10px] tracking-widest uppercase">
                       Achievement
                     </p>
                   </div>
@@ -227,7 +234,7 @@ export default function PrincessPage() {
         {/* Photo strip */}
         <section className="bg-royal-black border-t border-royal-dark-border overflow-x-auto">
           <div className="flex gap-px min-w-max">
-            {['DSC_7949.jpg', 'DSC_7951.jpg', 'DSC_7968.jpg', 'DSC_7975.jpg', 'DSC_0557.JPG', 'DSC_0524.JPG', 'DSC_0597.jpg'].map((file) => (
+            {['DSC_0523.JPG', 'DSC_0354.jpg','DSC_0524.JPG',  '1cc6daa0-e496-4c4e-ae58-04192a8e8e6e.JPG','DSC_7968.jpg','DSC_7951.jpg',  'DSC_7975.jpg', '2269655e-3956-4a26-9adc-a1cf65cd8122.JPG'].map((file) => (
               <div key={file} className="w-56 h-72 shrink-0 overflow-hidden">
                 <img
                   src={`/images/princess_m/${file}`}
@@ -275,7 +282,7 @@ export default function PrincessPage() {
         </section>
 
         {/* Brands */}
-        <section className="bg-royal-black py-24 px-8 md:px-20 border-t border-royal-dark-border">
+        <section className="bg-brand-gradient py-24 px-8 md:px-20 border-t border-royal-border">
           <div
             ref={brandsRef}
             className={`max-w-7xl mx-auto transition-all duration-700 ease-out ${
@@ -284,28 +291,26 @@ export default function PrincessPage() {
           >
             <div className="flex items-center gap-4 mb-4">
               <div className="w-8 border-t border-royal-gold" />
-              <p className="font-mono text-royal-gold/50 text-[10px] tracking-[0.4em] uppercase">
+              <p className="font-mono text-royal-burgundy/70 text-[10px] tracking-[0.4em] uppercase">
                 04 / Partnerships
               </p>
             </div>
             <div className="mb-12 leading-none">
-              <h2 className="font-display text-5xl md:text-6xl text-royal-cream">Brands She's</h2>
-              <h2 className="font-display text-5xl md:text-6xl text-royal-cream/20">Worked With</h2>
+              <h2 className="font-display text-5xl md:text-6xl text-royal-black">More Brands </h2>
+              <h2 className="font-display text-5xl md:text-6xl text-royal-burgundy/25">She's Worked With</h2>
             </div>
-            <div className="grid grid-cols-2 md:grid-cols-3 gap-px bg-royal-dark-border">
+            <div className="grid grid-cols-2 md:grid-cols-3 gap-10 md:gap-12">
               {brands.map((brand) => (
                 <div
                   key={brand.name}
-                  className="bg-royal-black flex flex-col items-center justify-center gap-5 p-10 md:p-14 min-h-[180px] group"
+                  className="flex flex-col items-center justify-center gap-5 p-6 md:p-8 group"
                 >
-                  <div className="flex items-center justify-center w-full h-16 md:h-20 px-4 rounded-sm bg-royal-cream/[0.03] border border-royal-dark-border group-hover:border-royal-gold/30 group-hover:bg-royal-cream/[0.06] transition-all duration-300">
-                    <img
-                      src={brand.logo}
-                      alt={brand.name}
-                      className="max-h-10 md:max-h-12 w-auto max-w-full object-contain opacity-75 group-hover:opacity-100 transition-opacity duration-300"
-                    />
-                  </div>
-                  <p className="font-mono text-royal-cream/30 text-[9px] tracking-[0.25em] uppercase text-center group-hover:text-royal-gold/70 transition-colors duration-300">
+                  <img
+                    src={brand.logo}
+                    alt={brand.name}
+                    className="max-h-10 md:max-h-12 w-auto max-w-full object-contain opacity-90 group-hover:opacity-100 transition-opacity duration-300"
+                  />
+                  <p className="font-mono text-royal-muted text-[9px] tracking-[0.25em] uppercase text-center group-hover:text-royal-burgundy transition-colors duration-300">
                     {brand.name}
                   </p>
                 </div>
@@ -356,7 +361,7 @@ export default function PrincessPage() {
         </section>
 
         {/* Media Profile Download */}
-        <section className="bg-royal-gold py-20 px-8 md:px-20">
+        <section className="bg-gradient-to-br from-royal-burgundy via-royal-burgundy-dark to-royal-black py-20 px-8 md:px-20">
           <div
             ref={profileRef}
             className={`max-w-7xl mx-auto transition-all duration-700 ease-out ${
@@ -365,11 +370,11 @@ export default function PrincessPage() {
           >
             <div className="flex flex-col md:flex-row items-center justify-between gap-8">
               <div>
-                <p className="font-mono text-royal-black/40 text-[10px] tracking-[0.4em] uppercase mb-2">Official Media Profile</p>
-                <h2 className="font-display text-4xl md:text-5xl text-royal-black leading-tight">
+                <p className="font-mono text-royal-gold/80 text-[10px] tracking-[0.4em] uppercase mb-2">Official Media Profile</p>
+                <h2 className="font-display text-4xl md:text-5xl text-royal-cream leading-tight">
                   Download Princess M's<br />Media Profile 2026
                 </h2>
-                <p className="font-body text-royal-black/50 text-sm mt-3 max-w-md">
+                <p className="font-body text-royal-cream/50 text-sm mt-3 max-w-md">
                   Full portfolio, biography, brand partnerships, achievements, and collaboration details — all in one document.
                 </p>
               </div>
@@ -377,7 +382,7 @@ export default function PrincessPage() {
                 href="/images/princess_m/PRINCESS MOBENG PROFILE 2026.pdf"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="shrink-0 bg-royal-black text-royal-cream px-10 py-4 text-xs tracking-widest uppercase font-body font-medium hover:bg-royal-black/80 transition-all duration-300"
+                className="shrink-0 bg-royal-gold text-royal-black px-10 py-4 text-xs tracking-widest uppercase font-body font-medium hover:bg-royal-gold-light transition-all duration-300"
               >
                 Download PDF →
               </a>
@@ -410,7 +415,15 @@ export default function PrincessPage() {
                     {...(link.external ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
                     className="flex items-center gap-3 font-body text-royal-muted hover:text-royal-gold transition-colors duration-300 text-sm group"
                   >
-                    <span className="text-royal-gold">{link.icon}</span>
+                    <span className="flex w-5 shrink-0 items-center justify-center opacity-90 group-hover:opacity-100">
+                      {'brand' in link && link.brand ? (
+                        <ContactBrandIcon brand={link.brand} />
+                      ) : (
+                        <span className="text-base leading-none" aria-hidden="true">
+                          {'emoji' in link ? link.emoji : ''}
+                        </span>
+                      )}
+                    </span>
                     <span className="font-body text-royal-muted/50 text-xs w-20 shrink-0 uppercase tracking-widest">
                       {link.label}
                     </span>
